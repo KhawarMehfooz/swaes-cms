@@ -37,7 +37,7 @@
             padding: 5px;
             word-wrap: break-word;
             overflow-wrap: break-word;
-            text-align: start; 
+            text-align: start;
             vertical-align: top
         }
 
@@ -101,27 +101,9 @@
 
     <div id="application-preview" class="application-form">
         <!-- Header -->
-        <div class="header" style="width: 100%;">
-            <table style="width: 100%; border: none;">
-                <tr>
-                    <!-- Logo on Left -->
-                    <td style="width: 80px; text-align: left; vertical-align: middle; border: none;">
-                        <img src="{{ asset('storage/' . $generalSettings->logo) }}" alt="Logo"
-                            style="height: 70px; width: auto; object-fit:cover;">
-                    </td>
+        <x-form-header />
 
-                    <!-- Organization Info in Center -->
-                    <td style="text-align: center; vertical-align: middle; border: none;">
-                        <h2 style="margin: 0; font-size: 20px; font-weight: bold; text-transform: uppercase;">
-                            {{ strtoupper($generalSettings->organization_name) }}<sup>&reg;</sup>
-                        </h2>
-                        <p style="margin: 0; font-size: 14px;">{{ $generalSettings->address }}</p>
-                    </td>
-                </tr>
-            </table>
-        </div>
         <hr>
-
 
         <table style="width:100%; margin:10px 0;">
             <tr>
@@ -206,7 +188,8 @@
             </tr>
             <tr>
                 <td>Amount</td>
-                <td colspan="3">{{ $generalSettings->currency_symbol }} {{ number_format($record->guardian_amount, 2) }}</td>
+                <td colspan="3">{{ $generalSettings->currency_symbol }} {{ number_format($record->guardian_amount, 2) }}
+                </td>
             </tr>
         </table>
 
@@ -222,11 +205,7 @@
         </table>
 
         <!-- Approval -->
-        <div class="footer" style=" width: 200px">
-            <p style="font-size: 14px; font-weight: bold;">Approved by</p>
-            <p>{{ $generalSettings->president }} <small>(President)</small></p>
-            <p style="font-size: 11px">{{ $generalSettings->organization_name }}<sup>&reg;</sup></p>
-        </div>
+        <x-form-footer />
     </div>
 
     <!-- PDF Script -->
