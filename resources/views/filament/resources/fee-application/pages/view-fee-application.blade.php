@@ -111,7 +111,7 @@
                     Ref No: {{ $record->id }}
                 </td>
                 <td style="text-align:right; border: 0;">
-                    Dated: {{ \Carbon\Carbon::parse($record->dated)->format('d:m:Y') }}
+                    Dated: {{ \Carbon\Carbon::parse($record->dated)->format('d/m/Y') }}
 
                 </td>
 
@@ -129,7 +129,7 @@
         <!-- Applicant Details -->
         <table>
             <tr class="section-title">
-                <td colspan="4">Applicant Details</td>
+                <td colspan="4" style="text-align: center;">Applicant Details</td>
             </tr>
             <tr>
                 <td>Name of Applicant</td>
@@ -172,7 +172,7 @@
         <!-- Guardian Details -->
         <table style="margin-top: 24px;">
             <tr class="section-title">
-                <td colspan="4">Parent / Guardian Details</td>
+                <td colspan="4" style="text-align: center;">Parent / Guardian Details</td>
             </tr>
             <tr>
                 <td>Name</td>
