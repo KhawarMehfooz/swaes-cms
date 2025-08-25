@@ -220,7 +220,7 @@
 
             const opt = {
                 margin: [0, 0, 0, 0],
-                filename: '{{ $record->id }}_Fee_Form_SWAES.pdf',
+                filename: '{{ $record->id }}_Medical_Assistance_Application_SWAES.pdf',
                 image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: { scale: 2, scrollX: 0, scrollY: 0 },
                 jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
