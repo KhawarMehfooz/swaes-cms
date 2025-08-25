@@ -6,8 +6,10 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
+use Filament\Actions\ReplicateAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
+use Filament\Notifications\Notification;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
@@ -34,6 +36,12 @@ class FeeApplicationsTable
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
+                ReplicateAction::make()
+                    ->successNotification(
+                        Notification::make()
+                            ->success()
+                            ->title('Fee Application Replicated')
+                    )
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
