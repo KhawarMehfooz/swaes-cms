@@ -118,8 +118,7 @@
             </tr>
         </table>
 
-        <h3 style="text-align:center; margin: 16px 0; font-size: 22px; font-weight: bold;">Application For Medical
-            Assistance</h3>
+        <h3 style="text-align:center; margin: 16px 0; font-size: 22px; font-weight: bold;">Application For Marriage Assistance</h3>
 
         @php
             /** @var \App\Filament\Resources\FeeApplications\Pages\ViewFeeApplication $this */
