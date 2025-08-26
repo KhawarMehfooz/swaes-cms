@@ -10,6 +10,8 @@ class ViewUniformApplication extends ViewRecord
 {
     protected static string $resource = UniformApplicationResource::class;
 
+    protected string $view = 'filament.resources.uniform-application.pages.view-uniform-application';
+
     protected function getHeaderActions(): array
     {
         return [
