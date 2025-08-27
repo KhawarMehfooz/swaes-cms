@@ -27,6 +27,8 @@ jobs:
 
             docker compose up -d
 
+             docker exec -i ${{ secrets.VPS_CONTAINER_NAME }} sh -c 'apt-get update && apt-get install -y netcat'
+
             docker exec -i ${{ secrets.VPS_CONTAINER_NAME }} sh -c 'until nc -z mysql 3306; do sleep 2; done'
 
             docker exec -i ${{ secrets.VPS_CONTAINER_NAME }} composer install --no-interaction --prefer-dist --optimize-autoloader
