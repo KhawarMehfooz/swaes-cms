@@ -2,9 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\Transaction;
+use App\Observers\TransactionObserver;
 use Illuminate\Support\ServiceProvider;
 use App\Settings\GeneralSettings;
 use Illuminate\Support\Facades\View;
+use Transliterator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,5 +28,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*', function ($view) {
             $view->with('generalSettings', app(GeneralSettings::class));
         });
+
+        Transaction::observe(TransactionObserver::class);
     }
 }
