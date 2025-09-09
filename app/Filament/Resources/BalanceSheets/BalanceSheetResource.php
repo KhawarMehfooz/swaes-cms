@@ -11,18 +11,22 @@ use App\Filament\Resources\BalanceSheets\Schemas\BalanceSheetInfolist;
 use App\Filament\Resources\BalanceSheets\Tables\BalanceSheetsTable;
 use App\Models\BalanceSheet;
 use BackedEnum;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use UnitEnum;
 
 class BalanceSheetResource extends Resource
 {
     protected static ?string $model = BalanceSheet::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedScale;
+
+    protected static string|UnitEnum|null $navigationGroup = 'Accounting';
 
     public static function form(Schema $schema): Schema
     {

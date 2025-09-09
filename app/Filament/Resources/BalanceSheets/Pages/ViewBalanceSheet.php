@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\BalanceSheets\Pages;
 
 use App\Filament\Resources\BalanceSheets\BalanceSheetResource;
+use App\Models\Donor;
 use Filament\Actions\Action;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -39,7 +40,7 @@ class ViewBalanceSheet extends ViewRecord
 
                     Select::make('donor_id')
                         ->label('Donor')
-                        ->options(\App\Models\Donor::pluck('donor_name', 'id')) // Adjust model/field names
+                        ->options(Donor::pluck('donor_name', 'id')) 
                         ->searchable()
                         ->visible(fn(callable $get) => $get('type') === 'income')
                         ->nullable(),
