@@ -14,7 +14,7 @@ class ExpenseForm
             ->components([
                 TextInput::make('purpose')->required(),
                 TextInput::make('amount')->numeric()->required(),
-                Hidden::make('type')->default('expense'), // 👈 always expense
+                Hidden::make('type')->default('expense'), 
             ]);
     }
 }
