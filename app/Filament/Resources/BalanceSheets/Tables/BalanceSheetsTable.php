@@ -16,6 +16,7 @@ use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
+use App\Settings\GeneralSettings;
 
 class BalanceSheetsTable
 {
@@ -25,9 +26,11 @@ class BalanceSheetsTable
             ->columns([
                 TextColumn::make('month'),
                 TextColumn::make('opening_balance')
-                    ->label('Opening Balance'),
+                    ->label('Opening Balance')
+                    ->prefix(app(GeneralSettings::class)->currency_symbol . ' '),
                 TextColumn::make('closing_balance')
-                    ->label('Closing Balance'),
+                    ->label('Closing Balance')
+                    ->prefix(app(GeneralSettings::class)->currency_symbol . ' '),
                 BadgeColumn::make('status')
                     ->label('Status')
                     ->colors([

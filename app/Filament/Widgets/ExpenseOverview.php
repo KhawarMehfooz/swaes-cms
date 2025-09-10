@@ -6,6 +6,7 @@ use App\Models\BalanceSheet;
 use App\Models\Transaction;
 use Filament\Widgets\StatsOverviewWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
+USE App\Settings\GeneralSettings;
 
 class ExpenseOverview extends StatsOverviewWidget
 {
@@ -20,7 +21,7 @@ class ExpenseOverview extends StatsOverviewWidget
         $total = $query->sum('amount');
 
         return [
-            Stat::make('Expenses', number_format($total, 2))
+            Stat::make('Expenses', app(GeneralSettings::class)->currency_symbol . ' ' . number_format($total, 2))
                 ->description("Expenses for " . now()->format('F Y'))
                 ->color('danger'),
         ];

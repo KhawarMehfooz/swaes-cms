@@ -24,6 +24,7 @@ use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Settings\GeneralSettings;
 
 class DonationsRelationManager extends RelationManager
 {
@@ -54,7 +55,7 @@ class DonationsRelationManager extends RelationManager
             ->columns([
                 TextColumn::make('purpose')
                     ->searchable(),
-                TextColumn::make('amount'),
+                TextColumn::make('amount')->prefix(app(GeneralSettings::class)->currency_symbol . ' '),
                 TextColumn::make('created_at')->dateTime(),
             ])
             ->filters([

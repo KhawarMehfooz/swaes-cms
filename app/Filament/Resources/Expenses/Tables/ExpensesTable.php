@@ -14,6 +14,7 @@ use Filament\Notifications\Notification;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
+use App\Settings\GeneralSettings;
 
 class ExpensesTable
 {
@@ -22,7 +23,7 @@ class ExpensesTable
         return $table
             ->columns([
                 TextColumn::make('purpose')->searchable(),
-                TextColumn::make('amount'),
+                TextColumn::make('amount')->prefix(app(GeneralSettings::class)->currency_symbol . ' '),
                 TextColumn::make('created_at')->dateTime(),
 
             ])->defaultSort('created_at', 'desc')

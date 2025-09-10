@@ -9,6 +9,8 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Schemas\Schema;
+use App\Settings\GeneralSettings;
+
 
 class DonationForm
 {
@@ -19,8 +21,9 @@ class DonationForm
                 Select::make('donor_id')
                     ->label('Donor')
                     ->required()
-                    ->options(fn() => Donor::pluck('donor_name', 'id')) 
+                    ->options(fn() => Donor::pluck('donor_name', 'id'))
                     ->searchable()
+                    ->prefixIcon('heroicon-o-user-group')
                     ->suffixAction(
                         Action::make('create_donor')
                             ->icon('heroicon-o-plus')
@@ -28,9 +31,22 @@ class DonationForm
                             ->modalHeading('Create New Donor')
                             ->modalWidth('lg')
                             ->form([
-                                TextInput::make('donor_name')->label('Full Name')->required()->maxLength(30),
-                                TextInput::make('donor_cnic')->label('CNIC')->required()->mask('99999-9999999-9'),
-                                TextInput::make('donor_contact_number')->label('Contact Number')->mask('9999-9999999'),
+                                TextInput::make('donor_name')
+                                    ->label('Full Name')
+                                    ->required()
+                                    ->maxLength(30)
+                                    ->prefixIcon('heroicon-o-user'),
+
+                                TextInput::make('donor_cnic')
+                                    ->label('CNIC')
+                                    ->required()
+                                    ->mask('99999-9999999-9')
+                                    ->prefixIcon('heroicon-o-identification'),
+
+                                TextInput::make('donor_contact_number')
+                                    ->label('Contact Number')
+                                    ->mask('9999-9999999')
+                                    ->prefixIcon('heroicon-o-phone'),
                             ])
                             ->action(function ($data, $livewire, $component) {
                                 $donor = Donor::create($data);
@@ -46,8 +62,9 @@ class DonationForm
                             })
                     )->columnSpanFull(),
 
-                TextInput::make('purpose')->required()->autocomplete(false)->maxLength(64),
-                TextInput::make('amount')->numeric()->required()->autocomplete(false),
+                TextInput::make('purpose')->required()->autocomplete(false)->maxLength(64)->prefixIcon('heroicon-o-information-circle'),
+                TextInput::make('amount')->numeric()->required()->autocomplete(false)->prefix(app(GeneralSettings::class)->currency_symbol)
+                    ->required(),
                 Hidden::make('type')->default('income'),
             ]);
     }

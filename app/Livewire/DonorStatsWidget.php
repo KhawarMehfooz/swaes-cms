@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Donor;
 use Filament\Widgets\StatsOverviewWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
+USE App\Settings\GeneralSettings;
 
 class DonorStatsWidget extends StatsOverviewWidget
 {
@@ -17,7 +18,7 @@ class DonorStatsWidget extends StatsOverviewWidget
         $count = $this->record?->donations()->count() ?? 0;
 
         return [
-            Stat::make('Total Donations', number_format($total))
+            Stat::make('Total Donations', app(GeneralSettings::class)->currency_symbol . ' ' . number_format($total))
                 ->description("Across {$count} donations")
                 ->color('success')
                 ->icon('heroicon-o-gift'),

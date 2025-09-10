@@ -4,6 +4,7 @@ namespace App\Filament\Widgets;
 
 use App\Models\BalanceSheet;
 use App\Models\Transaction;
+use App\Settings\GeneralSettings;
 use Filament\Widgets\StatsOverviewWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 
@@ -20,7 +21,7 @@ class DonationsOverview extends StatsOverviewWidget
         $total = $query->sum('amount');
 
         return [
-            Stat::make('Donations', number_format($total, 2))
+            Stat::make('Donations', app(GeneralSettings::class)->currency_symbol . ' ' . number_format($total, 2))
                 ->description("Donations for " . now()->format('F Y'))
                 ->color('primary')
                 ->icon('heroicon-o-gift'),

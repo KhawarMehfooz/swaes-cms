@@ -120,7 +120,7 @@
                     Opening Balance:</td>
                 <td
                     style="font-weight: bold; text-align: right; border: 1px solid #ddd; border-bottom: none; border-left: none; padding: 8px;">
-                    {{ number_format($record->opening_balance, 2) }}
+                    {{ $generalSettings->currency_symbol . ' ' . number_format($record->opening_balance, 2) }}
                 </td>
             </tr>
         </table>
@@ -184,7 +184,7 @@
                 <tr style="font-weight: bold; background-color: #f9f9f9;">
                     <td colspan="4" style="padding: 8px; border: 1px solid #ddd;">Closing Balance</td>
                     <td style="padding: 8px; border: 1px solid #ddd; text-align:right;">
-                        {{ number_format($runningBalance, 2) }}
+                        {{ $generalSettings->currency_symbol . ' ' . number_format($runningBalance, 2) }}
                     </td>
                 </tr>
             </tfoot>

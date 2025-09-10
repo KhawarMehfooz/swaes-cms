@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Expenses\Schemas;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
+use App\Settings\GeneralSettings;
 
 class ExpenseForm
 {
@@ -12,9 +13,13 @@ class ExpenseForm
     {
         return $schema
             ->components([
-                TextInput::make('purpose')->required(),
-                TextInput::make('amount')->numeric()->required(),
-                Hidden::make('type')->default('expense'), 
+                TextInput::make('purpose')
+                    ->label('Purpose')
+                    ->required()
+                    ->prefixIcon('heroicon-o-information-circle'),
+
+                TextInput::make('amount')->numeric()->required()->prefix(app(GeneralSettings::class)->currency_symbol . ' '),
+                Hidden::make('type')->default('expense'),
             ]);
     }
 }
