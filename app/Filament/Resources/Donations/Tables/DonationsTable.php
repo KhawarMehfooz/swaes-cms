@@ -30,6 +30,7 @@ class DonationsTable
             ->headerActions([
                 CreateAction::make()
                     ->label('New Donation')
+                    ->icon('heroicon-o-plus')
                     ->modalHeading('New Donation')
                     ->modalWidth('xl')
                     ->visible(fn(): bool => ($bs = BalanceSheet::latest()->first()) && $bs->status !== 'finalized')

@@ -19,9 +19,13 @@ class DonorsTable
         return $table
             ->columns([
                 TextColumn::make('donor_name')
-                    ->label('Full Name'),
+                    ->label('Full Name')->searchable(),
                 TextColumn::make('donor_cnic')
                     ->label('CNIC')
+                    ->searchable(),
+                    TextColumn::make('donor_contact_number')
+                        ->label('Contact Number')
+                        ->default('N/A')
             ])
             ->filters([
                 // TrashedFilter::make(),
@@ -31,11 +35,11 @@ class DonorsTable
                 EditAction::make(),
             ])
             ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                    ForceDeleteBulkAction::make(),
-                    RestoreBulkAction::make(),
-                ]),
+                // BulkActionGroup::make([
+                //     DeleteBulkAction::make(),
+                //     ForceDeleteBulkAction::make(),
+                //     RestoreBulkAction::make(),
+                // ]),
             ]);
     }
 }
