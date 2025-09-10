@@ -14,8 +14,8 @@ class Transaction extends Model
         'amount',
         'purpose',
         'type',
-        'amount',
-        'donor_id'
+        'donor_id',
+        'dated',
     ];
 
     public function balanceSheet(){

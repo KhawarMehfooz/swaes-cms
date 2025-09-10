@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->decimal('opening_balance', 15, 2)->default(0);
             $table->decimal('closing_balance', 15, 2)->default(0);
 
-            $table->enum('status', ['draft', 'finalized', 'locked'])->default('draft');
+            $table->enum('status', ['draft', 'finalized'])->default('draft');
 
             $table->softDeletes();
             $table->timestamps();

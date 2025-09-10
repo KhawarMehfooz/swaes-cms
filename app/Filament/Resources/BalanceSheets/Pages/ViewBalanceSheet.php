@@ -5,7 +5,10 @@ namespace App\Filament\Resources\BalanceSheets\Pages;
 use App\Filament\Resources\BalanceSheets\BalanceSheetResource;
 use App\Models\Donor;
 use App\Settings\GeneralSettings;
+use Carbon\Carbon;
+use DateTime;
 use Filament\Actions\Action;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
@@ -58,18 +61,18 @@ class ViewBalanceSheet extends ViewRecord
                                         ->label('Full Name')
                                         ->required()
                                         ->maxLength(30)
-                                        ->prefixIcon('heroicon-o-user'), 
+                                        ->prefixIcon('heroicon-o-user'),
 
                                     TextInput::make('donor_cnic')
                                         ->label('CNIC')
                                         ->required()
                                         ->mask('99999-9999999-9')
-                                        ->prefixIcon('heroicon-o-identification'), 
+                                        ->prefixIcon('heroicon-o-identification'),
 
                                     TextInput::make('donor_contact_number')
                                         ->label('Contact Number')
                                         ->mask('9999-9999999')
-                                        ->prefixIcon('heroicon-o-phone'), 
+                                        ->prefixIcon('heroicon-o-phone'),
 
                                 ])
                                 ->action(function ($data, $livewire, $component) {
@@ -97,6 +100,12 @@ class ViewBalanceSheet extends ViewRecord
                         ->label('Amount')
                         ->prefix(app(GeneralSettings::class)->currency_symbol)
                         ->required(),
+                    DatePicker::make('dated')
+                        ->label('Date')
+                        ->prefixIcon('heroicon-o-calendar')
+                        ->default(Carbon::now('Asia/Karachi'))
+                        ->maxDate(Carbon::now('Asia/Karachi')),
+
                 ])
                 ->action(function (array $data, $record) {
                     $record->transactions()->create($data);

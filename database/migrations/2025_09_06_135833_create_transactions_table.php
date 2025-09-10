@@ -20,9 +20,11 @@ return new class extends Migration {
                 ->constrained()
                 ->nullOnDelete();
 
-            $table->enum('type', ['income', 'expense']);
+            $table->enum('type', ['income', 'expense'])->index();
             $table->string('purpose');
-            $table->decimal('amount', 15, 2);
+            $table->decimal('amount', 15, 2)->index();
+
+            $table->date('dated');
 
             $table->softDeletes();
             $table->timestamps();

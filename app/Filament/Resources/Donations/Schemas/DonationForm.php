@@ -3,7 +3,9 @@
 namespace App\Filament\Resources\Donations\Schemas;
 
 use App\Models\Donor;
+use Carbon\Carbon;
 use Filament\Actions\Action;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -34,11 +36,13 @@ class DonationForm
                                 TextInput::make('donor_name')
                                     ->label('Full Name')
                                     ->required()
+                                    ->autocomplete(false)
                                     ->maxLength(30)
                                     ->prefixIcon('heroicon-o-user'),
 
                                 TextInput::make('donor_cnic')
                                     ->label('CNIC')
+                                    ->autocomplete(false)
                                     ->required()
                                     ->mask('99999-9999999-9')
                                     ->prefixIcon('heroicon-o-identification'),
@@ -46,6 +50,7 @@ class DonationForm
                                 TextInput::make('donor_contact_number')
                                     ->label('Contact Number')
                                     ->mask('9999-9999999')
+                                    ->autocomplete(false)
                                     ->prefixIcon('heroicon-o-phone'),
                             ])
                             ->action(function ($data, $livewire, $component) {
@@ -62,9 +67,22 @@ class DonationForm
                             })
                     )->columnSpanFull(),
 
-                TextInput::make('purpose')->required()->autocomplete(false)->maxLength(64)->prefixIcon('heroicon-o-information-circle'),
-                TextInput::make('amount')->numeric()->required()->autocomplete(false)->prefix(app(GeneralSettings::class)->currency_symbol)
-                    ->required(),
+                TextInput::make('purpose')
+                    ->required()
+                    ->autocomplete(false)
+                    ->maxLength(64)
+                    ->prefixIcon('heroicon-o-information-circle')
+                    ->columnSpanFull(),
+                TextInput::make('amount')
+                    ->numeric()
+                    ->required()
+                    ->autocomplete(false)
+                    ->prefix(app(GeneralSettings::class)->currency_symbol),
+                DatePicker::make('dated')
+                    ->label('Date')
+                    ->prefixIcon('heroicon-o-calendar')
+                    ->default(Carbon::now('Asia/Karachi'))
+                    ->maxDate(Carbon::now('Asia/Karachi')),
                 Hidden::make('type')->default('income'),
             ]);
     }

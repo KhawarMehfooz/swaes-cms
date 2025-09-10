@@ -26,8 +26,8 @@ class DonationsTable
                 TextColumn::make('donor.donor_name')->searchable(),
                 TextColumn::make('purpose')->searchable(),
                 TextColumn::make('amount')->prefix(app(GeneralSettings::class)->currency_symbol . ' '),
-                TextColumn::make('created_at')->dateTime(),
-            ])->defaultSort('created_at', 'desc')
+                TextColumn::make('dated')->date()->label('Date'),
+            ])->defaultSort('dated', 'desc')
             ->headerActions([
                 CreateAction::make()
                     ->label('New Donation')

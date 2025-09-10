@@ -24,13 +24,13 @@ class ExpensesTable
             ->columns([
                 TextColumn::make('purpose')->searchable(),
                 TextColumn::make('amount')->prefix(app(GeneralSettings::class)->currency_symbol . ' '),
-                TextColumn::make('created_at')->dateTime(),
+                TextColumn::make('dated')->date()->label('Date'),
 
-            ])->defaultSort('created_at', 'desc')
+            ])->defaultSort('dated', 'desc')
             ->headerActions([
-                // Real create expense, only visible if an active balance sheet exists
                 CreateAction::make()
                     ->label('Create Expense')
+                    ->modalWidth('lg')
                     ->modalHeading('New Expense')
                     ->visible(fn(): bool => ($bs = BalanceSheet::latest()->first()) && $bs->status !== 'finalized')
                     ->using(function (array $data): Transaction {
