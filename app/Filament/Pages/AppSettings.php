@@ -5,6 +5,7 @@ namespace App\Filament\Pages;
 use App\Settings\GeneralSettings;
 use BackedEnum;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Pages\SettingsPage;
 use Filament\Schemas\Components\Section;
@@ -47,18 +48,32 @@ class AppSettings extends SettingsPage
                         ->prefixIcon('heroicon-o-user'),
                     FileUpload::make('logo')
                         ->label('Logo')
-                        ->image() 
-                        ->directory('logos') 
+                        ->image()
+                        ->directory('logos')
                         ->disk('public')
-                        ->maxSize(4096) 
-                        ->imagePreviewHeight('200') 
+                        ->maxSize(4096)
+                        ->imagePreviewHeight('200')
                         ->hint('Upload your organization\'s logo (PNG or JPG)')
                         ->imageEditor()
                         ->columnSpanFull(),
                 ])
                 ->columns(1),
+            Section::make('Accounting')
+                ->description('Manage details related to accounting operations.')
+                ->schema([
+                    Select::make('currency_symbol')
+                        ->label('Currency Symbol')
+                        ->options([
+                            'Rs' => 'Rs'
+                        ])
+                        ->default('Rs')
+                        ->disabled()
+                        ->required()
+                        ->prefixIcon('heroicon-o-banknotes'),
+                ])
+                ->columns(1),
         ]);
 
     }
-    
+
 }
