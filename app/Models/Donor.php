@@ -13,4 +13,8 @@ class Donor extends Model
         'donor_cnic',
         'donor_contact_number'
     ];
+
+    public function donations(){
+        return $this->hasMany(Transaction::class);
+    }
 }

@@ -6,6 +6,7 @@ use App\Filament\Resources\Donors\Pages\CreateDonor;
 use App\Filament\Resources\Donors\Pages\EditDonor;
 use App\Filament\Resources\Donors\Pages\ListDonors;
 use App\Filament\Resources\Donors\Pages\ViewDonor;
+use App\Filament\Resources\Donors\RelationManagers\DonationsRelationManager;
 use App\Filament\Resources\Donors\Schemas\DonorForm;
 use App\Filament\Resources\Donors\Schemas\DonorInfolist;
 use App\Filament\Resources\Donors\Tables\DonorsTable;
@@ -45,7 +46,7 @@ class DonorResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            DonationsRelationManager::class
         ];
     }
 

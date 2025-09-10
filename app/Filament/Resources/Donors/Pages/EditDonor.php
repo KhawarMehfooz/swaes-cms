@@ -22,4 +22,9 @@ class EditDonor extends EditRecord
             RestoreAction::make(),
         ];
     }
+
+    public function getRelationManagers(): array
+    {
+        return [];
+    }
 }
