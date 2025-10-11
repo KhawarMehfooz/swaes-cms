@@ -21,7 +21,6 @@ class DonorForm
                             ->prefixIcon('heroicon-o-user'),
 
                         TextInput::make('donor_cnic')
-                            ->required()
                             ->unique(table: 'donors', column: 'donor_cnic')
                             ->label('Donor\'s CNIC')
                             ->mask('12345-6789123-4')
