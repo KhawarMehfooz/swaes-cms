@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('donors', function (Blueprint $table) {
             $table->id();
             $table->string('donor_name');
-            $table->string('donor_cnic',15)->unique();
+            $table->string('donor_cnic',15)->nullable()->unique();
             $table->string('donor_contact_number',15)->nullable();
 
             $table->softDeletes();

@@ -12,6 +12,7 @@ return new class extends Migration {
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            $table->string('receipt_number')->nullable()->unique();
             $table->foreignId('balance_sheet_id')->nullable()
                 ->constrained()
                 ->nullOnDelete();

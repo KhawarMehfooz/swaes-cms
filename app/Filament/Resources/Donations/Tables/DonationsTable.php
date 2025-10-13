@@ -23,6 +23,7 @@ class DonationsTable
     {
         return $table
             ->columns([
+                TextColumn::make('receipt_number')->searchable(),
                 TextColumn::make('donor.donor_name')->searchable(),
                 TextColumn::make('purpose')->searchable(),
                 TextColumn::make('amount')->prefix(app(GeneralSettings::class)->currency_symbol . ' '),
@@ -33,7 +34,7 @@ class DonationsTable
                     ->label('New Donation')
                     ->icon('heroicon-o-plus')
                     ->modalHeading('New Donation')
-                    ->modalWidth('xl')
+                    ->modalWidth('2xl')
                     ->visible(fn(): bool => ($bs = BalanceSheet::latest()->first()) && $bs->status !== 'finalized')
                     ->using(function (array $data): Transaction {
                         $currentBalanceSheet = BalanceSheet::latest()->first();

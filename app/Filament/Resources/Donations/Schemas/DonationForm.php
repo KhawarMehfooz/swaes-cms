@@ -20,6 +20,18 @@ class DonationForm
     {
         return $schema
             ->components([
+                TextInput::make('receipt_number')
+                    ->label('Receipt Number')
+                    ->prefix('#')
+                    ->required()
+                    ->autocomplete(false)
+                    ->placeholder('Receipt Number')
+                    ->unique(
+                        ignoreRecord: true, 
+                        table: 'transactions', 
+                        column: 'receipt_number'
+                    )
+                    ->rule('max:255'),
                 Select::make('donor_id')
                     ->label('Donor')
                     ->required()
@@ -43,7 +55,6 @@ class DonationForm
                                 TextInput::make('donor_cnic')
                                     ->label('CNIC')
                                     ->autocomplete(false)
-                                    ->required()
                                     ->mask('99999-9999999-9')
                                     ->prefixIcon('heroicon-o-identification'),
 
@@ -65,7 +76,7 @@ class DonationForm
                                     ->title('Donor created successfully')
                                     ->send();
                             })
-                    )->columnSpanFull(),
+                    ),
 
                 TextInput::make('purpose')
                     ->required()

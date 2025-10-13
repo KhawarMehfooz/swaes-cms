@@ -10,6 +10,7 @@ class Transaction extends Model
     use SoftDeletes;
 
     protected $fillable = [
+        'receipt_number',
         'balance_sheet_id',
         'amount',
         'purpose',
