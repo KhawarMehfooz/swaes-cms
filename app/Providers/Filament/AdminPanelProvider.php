@@ -34,6 +34,11 @@ class AdminPanelProvider extends PanelProvider
                 'primary' => Color::Yellow,
             ])
             ->profile()
+            ->navigationGroups([
+                'Accounting',
+                'Donations',
+                'Application Forms',
+            ])
             ->multiFactorAuthentication([
                 AppAuthentication::make()
                     ->recoverable(),
