@@ -102,7 +102,7 @@ class MarriageAssistanceApplicationForm
                         TextInput::make('bride_education')
                             ->required()
                             ->label('Education')
-                            ->placeholder('Enter disease name')
+                            ->placeholder('Enter bride\'s education')
                             ->prefixIcon('heroicon-o-academic-cap'),
 
                         TextInput::make('bride_occupation')

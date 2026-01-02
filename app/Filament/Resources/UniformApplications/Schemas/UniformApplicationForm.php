@@ -28,7 +28,7 @@ class UniformApplicationForm
                         Select::make('scheme_year')
                             ->label('Scheme')
                             ->options(
-                                collect(range(2020, now()->year + 2))
+                                collect(range(2025, now()->year + 2))
                                     ->reverse()
                                     ->mapWithKeys(fn($year) => [$year => $year])
                             )
@@ -57,7 +57,7 @@ class UniformApplicationForm
                         TextInput::make('guardian_cnic')
                             ->required()
                             ->label('Father/Guardian CNIC')
-                            ->mask('12345-6789123-4')
+                            ->mask('99999-9999999-9')
                             ->placeholder('12345-6789123-4')
                             ->prefixIcon('heroicon-o-identification'),
 
