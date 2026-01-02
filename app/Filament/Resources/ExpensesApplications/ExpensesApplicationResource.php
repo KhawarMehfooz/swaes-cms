@@ -28,6 +28,8 @@ class ExpensesApplicationResource extends Resource
 
     protected static string|UnitEnum|null $navigationGroup = 'Application Forms';
 
+    protected static ?string $recordTitleAttribute = 'shop_name';
+
     public static function form(Schema $schema): Schema
     {
         return ExpensesApplicationForm::configure($schema);

@@ -28,6 +28,7 @@ class MarriageAssistanceApplicationResource extends Resource
 
     protected static string|UnitEnum|null $navigationGroup = 'Application Forms';
 
+    protected static ?string $recordTitleAttribute = 'applicant_name';
 
     public static function form(Schema $schema): Schema
     {

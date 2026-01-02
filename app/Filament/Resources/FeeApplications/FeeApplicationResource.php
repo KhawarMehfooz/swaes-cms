@@ -27,6 +27,8 @@ class FeeApplicationResource extends Resource
 
     protected static string|UnitEnum|null $navigationGroup = 'Application Forms';
 
+    protected static ?string $recordTitleAttribute = 'name';
+
     public static function form(Schema $schema): Schema
     {
         return FeeApplicationForm::configure($schema);

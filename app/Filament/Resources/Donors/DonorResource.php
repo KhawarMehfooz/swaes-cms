@@ -28,6 +28,8 @@ class DonorResource extends Resource
 
     protected static string|UnitEnum|null $navigationGroup = 'Donations';
 
+    protected static ?string $recordTitleAttribute = 'donor_name';
+
     public static function form(Schema $schema): Schema
     {
         return DonorForm::configure($schema);

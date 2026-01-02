@@ -27,6 +27,8 @@ class GoodsAssistanceApplicationResource extends Resource
 
     protected static string|UnitEnum|null $navigationGroup = 'Application Forms';
 
+    protected static ?string $recordTitleAttribute = 'receiver_name';
+
     public static function form(Schema $schema): Schema
     {
         return GoodsAssistanceApplicationForm::configure($schema);

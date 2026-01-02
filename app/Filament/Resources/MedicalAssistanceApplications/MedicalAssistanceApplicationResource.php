@@ -25,6 +25,7 @@ class MedicalAssistanceApplicationResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-clipboard-document-list';
 
+    protected static ?string $recordTitleAttribute = 'applicant_name';
 
     protected static string|UnitEnum|null $navigationGroup = 'Application Forms';
 

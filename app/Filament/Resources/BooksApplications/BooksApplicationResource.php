@@ -27,6 +27,8 @@ class BooksApplicationResource extends Resource
 
     protected static string|UnitEnum|null $navigationGroup = 'Application Forms';
 
+    protected static ?string $recordTitleAttribute = 'student_name';
+
     public static function form(Schema $schema): Schema
     {
         return BooksApplicationForm::configure($schema);
