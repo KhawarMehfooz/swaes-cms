@@ -39,10 +39,6 @@ class AdminPanelProvider extends PanelProvider
                 'Donations',
                 'Application Forms',
             ])
-            ->multiFactorAuthentication([
-                AppAuthentication::make()
-                    ->recoverable(),
-            ])
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->font('Lexend')
             ->sidebarCollapsibleOnDesktop()
