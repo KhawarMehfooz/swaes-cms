@@ -14,6 +14,7 @@ class Transaction extends Model
         'balance_sheet_id',
         'amount',
         'purpose',
+        'account_of_expense_id',
         'type',
         'donor_id',
         'dated',
@@ -25,5 +26,9 @@ class Transaction extends Model
 
     public function donor(){
         return $this->belongsTo(Donor::class);
+    }
+
+    public function accountOfExpense(){
+        return $this->belongsTo(AccountOfExpense::class);
     }
 }

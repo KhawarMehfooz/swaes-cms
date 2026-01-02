@@ -138,39 +138,43 @@
             </thead>
             <tbody>
                 @php
-                    $transactions = $record->transactions()->orderBy('created_at')->get();
+                    $transactions = $record->transactions()->with('accountOfExpense')->orderBy('created_at')->get();
                     $runningBalance = $record->opening_balance;
                 @endphp
 
                 @forelse($transactions as $transaction)
-                                @php
-                                    if ($transaction->type === 'income') {
-                                        $credit = $transaction->amount;
-                                        $debit = 0;
-                                        $runningBalance += $credit;
-                                    } else if($transaction->type === 'expense') {
-                                        $debit = $transaction->amount;
-                                        $credit = 0;
-                                        $runningBalance -= $debit;
-                                    }
-                                @endphp
-                                <tr>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">
-                                        {{ $transaction->created_at->format('d M Y') }}
-                                    </td>
-                                    <td style="padding: 8px; border: 1px solid #ddd;">
-                                        {{ $transaction->purpose }}
-                                    </td>
-                                    <td style="padding: 8px; border: 1px solid #ddd; text-align:right;">
-                                        {{ $debit ? number_format($debit, 2) : '-' }}
-                                    </td>
-                                    <td style="padding: 8px; border: 1px solid #ddd; text-align:right;">
-                                        {{ $credit ? number_format($credit, 2) : '-' }}
-                                    </td>
-                                    <td style="padding: 8px; border: 1px solid #ddd; text-align:right;">
-                                        {{ number_format($runningBalance, 2) }}
-                                    </td>
-                                </tr>
+                    @php
+                        if ($transaction->type === 'income') {
+                            $credit = $transaction->amount;
+                            $debit = 0;
+                            $runningBalance += $credit;
+                        } elseif ($transaction->type === 'expense') {
+                            $debit = $transaction->amount;
+                            $credit = 0;
+                            $runningBalance -= $debit;
+                        }
+                    @endphp
+                    <tr>
+                        <td style="padding: 8px; border: 1px solid #ddd;">
+                            {{ $transaction->created_at->format('d M Y') }}
+                        </td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">
+                            @if ($transaction->type === 'expense' && $transaction->accountOfExpense)
+                                {{ $transaction->accountOfExpense->name }}
+                            @else
+                                {{ $transaction->purpose }}
+                            @endif
+                        </td>
+                        <td style="padding: 8px; border: 1px solid #ddd; text-align:right;">
+                            {{ $debit ? number_format($debit, 2) : '-' }}
+                        </td>
+                        <td style="padding: 8px; border: 1px solid #ddd; text-align:right;">
+                            {{ $credit ? number_format($credit, 2) : '-' }}
+                        </td>
+                        <td style="padding: 8px; border: 1px solid #ddd; text-align:right;">
+                            {{ number_format($runningBalance, 2) }}
+                        </td>
+                    </tr>
                 @empty
                     <tr>
                         <td colspan="5" style="text-align: center; padding: 12px; border:none;">
@@ -213,10 +217,23 @@
             const opt = {
                 margin: [0, 0, 0, 0],
                 filename: '{{ $record->month }}_Balance_Sheet.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, scrollX: 0, scrollY: 0 },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-                pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+                image: {
+                    type: 'jpeg',
+                    quality: 0.98
+                },
+                html2canvas: {
+                    scale: 2,
+                    scrollX: 0,
+                    scrollY: 0
+                },
+                jsPDF: {
+                    unit: 'mm',
+                    format: 'a4',
+                    orientation: 'portrait'
+                },
+                pagebreak: {
+                    mode: ['avoid-all', 'css', 'legacy']
+                }
             };
 
 
@@ -225,8 +242,6 @@
                 element.style.minHeight = originalMinHeight;
             });
         }
-
-
     </script>
 
 </x-filament-panels::page>

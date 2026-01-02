@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Expenses\Tables;
 
+use App\Models\AccountOfExpense;
 use App\Models\BalanceSheet;
 use App\Models\Transaction;
 use Filament\Actions\BulkActionGroup;
@@ -22,9 +23,17 @@ class ExpensesTable
     {
         return $table
             ->columns([
-                TextColumn::make('purpose')->searchable(),
-                TextColumn::make('amount')->prefix(app(GeneralSettings::class)->currency_symbol . ' '),
-                TextColumn::make('dated')->date()->label('Date'),
+                TextColumn::make('accountOfExpense.name')
+                    ->label('Account of Expense')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('amount')
+                    ->formatStateUsing(
+                        fn($state) =>
+                        app(GeneralSettings::class)->currency_symbol . ' ' . number_format($state, 2)
+                    )
+                    ->sortable(),
+                TextColumn::make('dated')->date(),
 
             ])->defaultSort('dated', 'desc')
             ->headerActions([
@@ -35,6 +44,14 @@ class ExpensesTable
                     ->visible(fn(): bool => ($bs = BalanceSheet::latest()->first()) && $bs->status !== 'finalized')
                     ->using(function (array $data): Transaction {
                         $currentBalanceSheet = BalanceSheet::latest()->first();
+
+                        // Auto-populate purpose from account of expense name for backward compatibility
+                        if (isset($data['account_of_expense_id'])) {
+                            $accountOfExpense = AccountOfExpense::find($data['account_of_expense_id']);
+                            if ($accountOfExpense) {
+                                $data['purpose'] = $accountOfExpense->name;
+                            }
+                        }
 
                         $transaction = Transaction::create([
                             ...$data,
