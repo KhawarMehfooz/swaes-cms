@@ -44,6 +44,7 @@ class AdminPanelProvider extends PanelProvider
                     ->recoverable(),
             ])
             ->viteTheme('resources/css/filament/admin/theme.css')
+            ->font('Lexend')
             ->sidebarCollapsibleOnDesktop()
             // ->maxContentWidth(Width::Full)
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
