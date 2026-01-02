@@ -36,6 +36,13 @@ class UniformApplicationsTable
                 ViewAction::make(),
                 EditAction::make(),
                 ReplicateAction::make()
+                    ->modal(false)
+                    ->using(function ($record) {
+                        $newRecord = $record->replicate();
+                        $newRecord->student_name = $record->student_name . ' (Copy)';
+                        $newRecord->save();
+                        return $newRecord;
+                    })
                     ->successNotification(
                         Notification::make()
                             ->success()

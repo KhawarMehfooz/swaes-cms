@@ -37,6 +37,13 @@ class GoodsAssistanceApplicationsTable
                 ViewAction::make(),
                 EditAction::make(),
                 ReplicateAction::make()
+                    ->modal(false)
+                    ->using(function ($record) {
+                        $newRecord = $record->replicate();
+                        $newRecord->receiver_name = $record->receiver_name . ' (Copy)';
+                        $newRecord->save();
+                        return $newRecord;
+                    })
                     ->successNotification(
                         Notification::make()
                             ->success()

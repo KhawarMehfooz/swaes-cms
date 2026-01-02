@@ -39,6 +39,13 @@ class MarriageAssistanceApplicationsTable
                 ViewAction::make(),
                 EditAction::make(),
                 ReplicateAction::make()
+                    ->modal(false)
+                    ->using(function ($record) {
+                        $newRecord = $record->replicate();
+                        $newRecord->applicant_name = $record->applicant_name . ' (Copy)';
+                        $newRecord->save();
+                        return $newRecord;
+                    })
                     ->successNotification(
                         Notification::make()
                             ->success()

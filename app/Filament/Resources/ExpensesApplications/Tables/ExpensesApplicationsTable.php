@@ -32,6 +32,13 @@ class ExpensesApplicationsTable
                 ViewAction::make(),
                 EditAction::make(),
                 ReplicateAction::make()
+                    ->modal(false)
+                    ->using(function ($record) {
+                        $newRecord = $record->replicate();
+                        $newRecord->shop_name = $record->shop_name . ' (Copy)';
+                        $newRecord->save();
+                        return $newRecord;
+                    })
                     ->successNotification(
                         Notification::make()
                             ->success()
