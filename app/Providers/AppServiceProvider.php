@@ -6,6 +6,7 @@ use App\Models\Transaction;
 use App\Observers\TransactionObserver;
 use Illuminate\Support\ServiceProvider;
 use App\Settings\GeneralSettings;
+use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Support\Facades\View;
 use Transliterator;
 
@@ -30,5 +31,10 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Transaction::observe(TransactionObserver::class);
+
+        FilamentIcon::register([
+            'panels::sidebar.collapse-button' => 'heroicon-o-x-mark',
+            'panels::sidebar.expand-button'   => 'heroicon-o-bars-3',
+        ]);
     }
 }
