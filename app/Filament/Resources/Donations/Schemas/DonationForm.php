@@ -13,7 +13,6 @@ use Filament\Notifications\Notification;
 use Filament\Schemas\Schema;
 use App\Settings\GeneralSettings;
 
-
 class DonationForm
 {
     public static function configure(Schema $schema): Schema
@@ -27,8 +26,8 @@ class DonationForm
                     ->autocomplete(false)
                     ->placeholder('Receipt Number')
                     ->unique(
-                        ignoreRecord: true, 
-                        table: 'transactions', 
+                        ignoreRecord: true,
+                        table: 'transactions',
                         column: 'receipt_number'
                     )
                     ->rule('max:255'),
@@ -37,49 +36,45 @@ class DonationForm
                     ->required()
                     ->options(fn() => Donor::pluck('donor_name', 'id'))
                     ->searchable()
+                    ->preload()
                     ->prefixIcon('heroicon-o-user-group')
-                    ->suffixAction(
-                        Action::make('create_donor')
-                            ->icon('heroicon-o-plus')
-                            ->tooltip('Add New Donor')
-                            ->modalHeading('Create New Donor')
-                            ->modalWidth('lg')
-                            ->form([
-                                TextInput::make('donor_name')
-                                    ->label('Full Name')
-                                    ->required()
-                                    ->autocomplete(false)
-                                    ->maxLength(30)
-                                    ->prefixIcon('heroicon-o-user'),
+                    ->createOptionForm([
+                        TextInput::make('donor_name')
+                            ->label('Full Name')
+                            ->placeholder('Full Name')
+                            ->required()
+                            ->autocomplete(false)
+                            ->maxLength(30)
+                            ->prefixIcon('heroicon-o-user'),
 
-                                TextInput::make('donor_cnic')
-                                    ->label('CNIC')
-                                    ->autocomplete(false)
-                                    ->mask('99999-9999999-9')
-                                    ->prefixIcon('heroicon-o-identification'),
+                        TextInput::make('donor_cnic')
+                            ->label('CNIC')
+                            ->autocomplete(false)
+                            ->mask('99999-9999999-9')
+                            ->placeholder('12345-6789123-4')
+                            ->unique(ignoreRecord: true, table: 'donors', column: 'donor_cnic')
+                            ->prefixIcon('heroicon-o-identification'),
 
-                                TextInput::make('donor_contact_number')
-                                    ->label('Contact Number')
-                                    ->mask('9999-9999999')
-                                    ->autocomplete(false)
-                                    ->prefixIcon('heroicon-o-phone'),
-                            ])
-                            ->action(function ($data, $livewire, $component) {
-                                $donor = Donor::create($data);
+                        TextInput::make('donor_contact_number')
+                            ->label('Donor\'s Contact Number')
+                            ->mask('9999-9999999')
+                            ->autocomplete(false)
+                            ->placeholder('0300-1234567')
+                            ->prefixIcon('heroicon-o-phone')
+                            ->unique(ignoreRecord: true, table: 'donors', column: 'donor_contact_number'),
+                    ])
+                    ->createOptionUsing(function (array $data) {
+                        return Donor::create([
+                            'donor_name' => $data['donor_name'],
+                            'donor_cnic' => $data['donor_cnic'],
+                            'donor_contact_number' => $data['donor_contact_number'],
+                        ])->id;
+                    }),
 
-                                $component->state($donor->id);
-
-                                $component->callAfterStateUpdated();
-
-                                Notification::make()
-                                    ->success()
-                                    ->title('Donor created successfully')
-                                    ->send();
-                            })
-                    ),
 
                 TextInput::make('purpose')
                     ->required()
+                    ->placeholder("Donation's Purpose")
                     ->autocomplete(false)
                     ->maxLength(64)
                     ->prefixIcon('heroicon-o-information-circle')
