@@ -23,10 +23,18 @@ class DonationsTable
     {
         return $table
             ->columns([
-                TextColumn::make('receipt_number')->searchable(),
-                TextColumn::make('donor.donor_name')->searchable(),
-                TextColumn::make('purpose')->searchable(),
-                TextColumn::make('amount')->prefix(app(GeneralSettings::class)->currency_symbol . ' '),
+                TextColumn::make('receipt_number')
+                    ->label('Receipt Number')
+                    ->searchable(),
+                TextColumn::make('donor.donor_name')
+                    ->searchable(),
+                TextColumn::make('purpose')
+                    ->searchable(),
+                TextColumn::make('amount')
+                    ->formatStateUsing(
+                        fn($state) =>
+                        app(GeneralSettings::class)->currency_symbol . ' ' . number_format($state, 2)
+                    ),
                 TextColumn::make('dated')->date()->label('Date'),
             ])->defaultSort('dated', 'desc')
             ->headerActions([

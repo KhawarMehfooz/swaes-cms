@@ -55,7 +55,10 @@ class DonationsRelationManager extends RelationManager
             ->columns([
                 TextColumn::make('purpose')
                     ->searchable(),
-                TextColumn::make('amount')->prefix(app(GeneralSettings::class)->currency_symbol . ' '),
+                TextColumn::make('amount')->formatStateUsing(
+                    fn($state) =>
+                    app(GeneralSettings::class)->currency_symbol . ' ' . number_format($state, 2)
+                ),
                 TextColumn::make('created_at')->dateTime(),
             ])
             ->filters([
@@ -81,7 +84,7 @@ class DonationsRelationManager extends RelationManager
                     RestoreBulkAction::make(),
                 ]),
             ])
-            ->modifyQueryUsing(fn (Builder $query) => $query
+            ->modifyQueryUsing(fn(Builder $query) => $query
                 ->withoutGlobalScopes([
                     SoftDeletingScope::class,
                 ]));

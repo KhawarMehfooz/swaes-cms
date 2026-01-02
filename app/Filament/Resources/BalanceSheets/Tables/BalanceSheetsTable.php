@@ -27,17 +27,24 @@ class BalanceSheetsTable
                 TextColumn::make('month'),
                 TextColumn::make('opening_balance')
                     ->label('Opening Balance')
-                    ->prefix(app(GeneralSettings::class)->currency_symbol . ' '),
+                    ->formatStateUsing(
+                        fn($state) =>
+                        app(GeneralSettings::class)->currency_symbol . ' ' . number_format($state, 2)
+                    ),
                 TextColumn::make('closing_balance')
                     ->label('Closing Balance')
-                    ->prefix(app(GeneralSettings::class)->currency_symbol . ' '),
-                BadgeColumn::make('status')
+                    ->formatStateUsing(
+                        fn($state) =>
+                        app(GeneralSettings::class)->currency_symbol . ' ' . number_format($state, 2)
+                    ),
+                TextColumn::make('status')
                     ->label('Status')
-                    ->colors([
-                        'warning' => 'draft',
-                        'success' => 'finalized',
-                        'danger' => 'locked',
-                    ])
+                    ->badge()
+                    ->color(fn(string $state): string => match ($state) {
+                        'draft' => 'gray',
+                        'finalized' => 'success',
+                        'locked' => 'danger',
+                    })
                     ->icons([
                         'heroicon-o-pencil-square' => 'draft',
                         'heroicon-o-check-circle' => 'finalized',
