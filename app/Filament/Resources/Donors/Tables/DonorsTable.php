@@ -17,15 +17,18 @@ class DonorsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->defaultSort('donor_name', 'asc')
             ->columns([
                 TextColumn::make('donor_name')
-                    ->label('Full Name')->searchable(),
+                    ->label('Full Name')
+                    ->searchable(),
                 TextColumn::make('donor_cnic')
                     ->label('CNIC')
+                    ->default('N/A')
                     ->searchable(),
-                    TextColumn::make('donor_contact_number')
-                        ->label('Contact Number')
-                        ->default('N/A')
+                TextColumn::make('donor_contact_number')
+                    ->label('Contact Number')
+                    ->default('N/A')
             ])
             ->filters([
                 // TrashedFilter::make(),

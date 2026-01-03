@@ -6,7 +6,6 @@
             padding: 10mm;
             background: #fff;
             color: #000;
-            font-family: 'Times New Roman', serif;
             font-size: 14px;
             margin: 0 auto;
             position: relative;
