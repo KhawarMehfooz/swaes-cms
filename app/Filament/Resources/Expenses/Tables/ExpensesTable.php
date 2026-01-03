@@ -2,11 +2,14 @@
 
 namespace App\Filament\Resources\Expenses\Tables;
 
+use App\Filament\Exports\ExpenseExporter;
 use App\Models\AccountOfExpense;
 use App\Models\BalanceSheet;
 use App\Models\Transaction;
 use App\Settings\GeneralSettings;
 use Filament\Actions\CreateAction;
+use Filament\Actions\ExportAction;
+use Filament\Actions\Exports\Enums\ExportFormat;
 use Filament\Forms\Components\DatePicker;
 use Filament\Notifications\Notification;
 use Filament\Tables\Columns\TextColumn;
@@ -125,6 +128,16 @@ class ExpensesTable
                 //     ForceDeleteBulkAction::make(),
                 //     RestoreBulkAction::make(),
                 // ]),
+
+                ExportAction::make('export_all')
+                    ->label('Export Expenses')
+                    ->icon('heroicon-o-arrow-down-tray')
+                    ->color('success')
+                    ->exporter(ExpenseExporter::class)
+                    ->formats([
+                        ExportFormat::Xlsx,
+                        ExportFormat::Csv,
+                    ]),
             ]);
     }
 }

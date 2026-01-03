@@ -36,6 +36,7 @@ class AdminPanelProvider extends PanelProvider
                 'Donations',
                 'Application Forms',
             ])
+            ->databaseNotifications()
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->font('Lexend')
             ->sidebarCollapsibleOnDesktop()
