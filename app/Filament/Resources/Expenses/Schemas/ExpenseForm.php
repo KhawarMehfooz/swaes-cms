@@ -18,7 +18,11 @@ class ExpenseForm
             ->components([
                 Select::make('account_of_expense_id')
                     ->label('Account of Expense')
-                    ->relationship('accountOfExpense', 'name')
+                    ->relationship(
+                        'accountOfExpense',
+                        'name',
+                        modifyQueryUsing: fn($query) => $query->orderBy('name', 'asc')
+                    )
                     ->required()
                     ->searchable()
                     ->preload()
