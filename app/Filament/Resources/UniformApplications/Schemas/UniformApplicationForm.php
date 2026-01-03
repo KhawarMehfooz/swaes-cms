@@ -30,7 +30,7 @@ class UniformApplicationForm
                             ->options(
                                 collect(range(2025, now()->year + 2))
                                     ->reverse()
-                                    ->mapWithKeys(fn($year) => [$year => $year])
+                                    ->mapWithKeys(fn ($year) => [$year => $year])
                             )
                             ->searchable()
                             ->required()

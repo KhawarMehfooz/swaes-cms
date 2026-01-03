@@ -35,15 +35,16 @@ class ExpensesApplicationsTable
                     ->modal(false)
                     ->using(function ($record) {
                         $newRecord = $record->replicate();
-                        $newRecord->shop_name = $record->shop_name . ' (Copy)';
+                        $newRecord->shop_name = $record->shop_name.' (Copy)';
                         $newRecord->save();
+
                         return $newRecord;
                     })
                     ->successNotification(
                         Notification::make()
                             ->success()
                             ->title('Expense Application Replicated')
-                    )
+                    ),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

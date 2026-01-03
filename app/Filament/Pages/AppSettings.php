@@ -19,6 +19,7 @@ class AppSettings extends SettingsPage
     protected static string $settings = GeneralSettings::class;
 
     protected static ?string $title = 'Settings';
+
     public function form(Schema $schema): Schema
     {
         return $schema->components([
@@ -64,7 +65,7 @@ class AppSettings extends SettingsPage
                     Select::make('currency_symbol')
                         ->label('Currency Symbol')
                         ->options([
-                            'Rs' => 'Rs'
+                            'Rs' => 'Rs',
                         ])
                         ->default('Rs')
                         ->disabled()
@@ -75,5 +76,4 @@ class AppSettings extends SettingsPage
         ]);
 
     }
-
 }

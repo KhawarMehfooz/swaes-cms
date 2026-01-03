@@ -40,15 +40,16 @@ class FeeApplicationsTable
                     ->modal(false)
                     ->using(function ($record) {
                         $newRecord = $record->replicate();
-                        $newRecord->name = $record->name . ' (Copy)';
+                        $newRecord->name = $record->name.' (Copy)';
                         $newRecord->save();
+
                         return $newRecord;
                     })
                     ->successNotification(
                         Notification::make()
                             ->success()
                             ->title('Fee Application Replicated')
-                    )
+                    ),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

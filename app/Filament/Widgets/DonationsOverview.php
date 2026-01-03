@@ -21,8 +21,8 @@ class DonationsOverview extends StatsOverviewWidget
         $total = $query->sum('amount');
 
         return [
-            Stat::make('Donations', app(GeneralSettings::class)->currency_symbol . ' ' . number_format($total, 2))
-                ->description("Donations for " . now()->format('F Y'))
+            Stat::make('Donations', app(GeneralSettings::class)->currency_symbol.' '.number_format($total, 2))
+                ->description('Donations for '.now()->format('F Y'))
                 ->color('primary')
                 ->icon('heroicon-o-gift'),
         ];
@@ -33,8 +33,8 @@ class DonationsOverview extends StatsOverviewWidget
         return 1;
     }
 
-        public function getColumnSpan(): int | string | array
+    public function getColumnSpan(): int|string|array
     {
-        return 1; 
+        return 1;
     }
 }

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class BooksApplication extends Model
 {
     use SoftDeletes;
+
     protected $fillable = [
         'student_name',
         'guardian_name',
@@ -20,8 +21,9 @@ class BooksApplication extends Model
         'stationary_details',
 
         'application_date',
-        'scheme_year'
+        'scheme_year',
     ];
+
     protected $casts = [
         'application_date' => 'date:Y-m-d',
     ];

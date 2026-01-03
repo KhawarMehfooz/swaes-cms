@@ -17,7 +17,7 @@ class GoodsAssistanceApplication extends Model
         'receiver_cnic',
         'receiver_mobile_number',
 
-        'application_date'
+        'application_date',
     ];
 
     protected $casts = [

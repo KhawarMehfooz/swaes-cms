@@ -12,7 +12,6 @@ class ViewMedicalAssistanceApplication extends ViewRecord
 
     protected string $view = 'filament.resources.medical-assistance-application.pages.view-medical-assistance-application';
 
-
     protected function getHeaderActions(): array
     {
         return [

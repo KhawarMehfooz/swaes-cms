@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Donors\RelationManagers;
 
+use App\Settings\GeneralSettings;
 use Filament\Actions\AssociateAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\CreateAction;
@@ -24,7 +25,6 @@ use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Settings\GeneralSettings;
 
 class DonationsRelationManager extends RelationManager
 {
@@ -56,8 +56,7 @@ class DonationsRelationManager extends RelationManager
                 TextColumn::make('purpose')
                     ->searchable(),
                 TextColumn::make('amount')->formatStateUsing(
-                    fn($state) =>
-                    app(GeneralSettings::class)->currency_symbol . ' ' . number_format($state, 2)
+                    fn ($state) => app(GeneralSettings::class)->currency_symbol.' '.number_format($state, 2)
                 ),
                 TextColumn::make('created_at')->dateTime(),
             ])
@@ -84,7 +83,7 @@ class DonationsRelationManager extends RelationManager
                     RestoreBulkAction::make(),
                 ]),
             ])
-            ->modifyQueryUsing(fn(Builder $query) => $query
+            ->modifyQueryUsing(fn (Builder $query) => $query
                 ->withoutGlobalScopes([
                     SoftDeletingScope::class,
                 ]));

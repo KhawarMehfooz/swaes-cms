@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\BalanceSheets\Tables;
 
+use App\Settings\GeneralSettings;
 use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -9,14 +10,10 @@ use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
-use Filament\Forms\Components\Hidden;
-use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
-use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
-use App\Settings\GeneralSettings;
 
 class BalanceSheetsTable
 {
@@ -28,19 +25,17 @@ class BalanceSheetsTable
                 TextColumn::make('opening_balance')
                     ->label('Opening Balance')
                     ->formatStateUsing(
-                        fn($state) =>
-                        app(GeneralSettings::class)->currency_symbol . ' ' . number_format($state, 2)
+                        fn ($state) => app(GeneralSettings::class)->currency_symbol.' '.number_format($state, 2)
                     ),
                 TextColumn::make('closing_balance')
                     ->label('Closing Balance')
                     ->formatStateUsing(
-                        fn($state) =>
-                        app(GeneralSettings::class)->currency_symbol . ' ' . number_format($state, 2)
+                        fn ($state) => app(GeneralSettings::class)->currency_symbol.' '.number_format($state, 2)
                     ),
                 TextColumn::make('status')
                     ->label('Status')
                     ->badge()
-                    ->color(fn(string $state): string => match ($state) {
+                    ->color(fn (string $state): string => match ($state) {
                         'draft' => 'gray',
                         'finalized' => 'success',
                         'locked' => 'danger',
@@ -50,7 +45,7 @@ class BalanceSheetsTable
                         'heroicon-o-check-circle' => 'finalized',
                         'heroicon-o-lock-closed' => 'locked',
                     ])
-                    ->formatStateUsing(fn(string $state): string => ucfirst($state)),
+                    ->formatStateUsing(fn (string $state): string => ucfirst($state)),
             ])
             ->filters([
                 // TrashedFilter::make(),
@@ -90,7 +85,7 @@ class BalanceSheetsTable
                             ->title('Balance sheet finalized successfully.')
                             ->success()
                             ->send();
-                    })
+                    }),
 
                 // EditAction::make(),
             ])

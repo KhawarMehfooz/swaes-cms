@@ -27,7 +27,7 @@ class AccountOfExpenseForm
                             ->rows(3)
                             ->columnSpanFull(),
                     ])
-                    ->columnSpanFull()
+                    ->columnSpanFull(),
             ]);
     }
 }

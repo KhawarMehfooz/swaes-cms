@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\BalanceSheets\Schemas;
 
 use App\Models\BalanceSheet;
-use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
@@ -26,7 +25,7 @@ class BalanceSheetForm
                             ->placeholder('Select a month')
                             ->options(function () {
                                 $existingMonths = BalanceSheet::pluck('month')->toArray(); // e.g., ['2025-09', '2025-10']
-                    
+
                                 return collect(range(0, 12))
                                     ->mapWithKeys(function ($i) use ($existingMonths) {
                                         $monthKey = now()->startOfMonth()->addMonths($i)->format('Y-m');
@@ -41,12 +40,11 @@ class BalanceSheetForm
                             })
                             ->required(),
 
-
                         TextInput::make('opening_balance')
                             ->numeric()
                             ->default(0)
-                            ->visible(fn() => !BalanceSheet::hasAnyBalanceSheet()), // Only visible if no sheets exist
-                    ])
+                            ->visible(fn () => ! BalanceSheet::hasAnyBalanceSheet()), // Only visible if no sheets exist
+                    ]),
 
             ]);
     }

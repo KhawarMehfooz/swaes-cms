@@ -19,7 +19,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use UnitEnum;
 
-
 class ExpensesApplicationResource extends Resource
 {
     protected static ?string $model = ExpensesApplication::class;

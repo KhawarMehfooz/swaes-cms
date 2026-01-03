@@ -9,11 +9,10 @@ use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\ReplicateAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
+use Filament\Notifications\Notification;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
-use Filament\Notifications\Notification;
-
 
 class MarriageAssistanceApplicationsTable
 {
@@ -42,15 +41,16 @@ class MarriageAssistanceApplicationsTable
                     ->modal(false)
                     ->using(function ($record) {
                         $newRecord = $record->replicate();
-                        $newRecord->applicant_name = $record->applicant_name . ' (Copy)';
+                        $newRecord->applicant_name = $record->applicant_name.' (Copy)';
                         $newRecord->save();
+
                         return $newRecord;
                     })
                     ->successNotification(
                         Notification::make()
                             ->success()
                             ->title('Marriage Assistance Application Replicated')
-                    )
+                    ),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

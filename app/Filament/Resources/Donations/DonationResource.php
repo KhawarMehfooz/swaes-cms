@@ -26,8 +26,8 @@ class DonationResource extends Resource
     protected static string|UnitEnum|null $navigationGroup = 'Donations';
 
     protected static ?string $navigationLabel = 'Donations';
-    protected static ?string $pluralLabel = 'Donations';
 
+    protected static ?string $pluralLabel = 'Donations';
 
     public static function form(Schema $schema): Schema
     {

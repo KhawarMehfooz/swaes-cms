@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Observers;
 
 use App\Models\Transaction;
@@ -24,7 +25,7 @@ class TransactionObserver
     {
         $balanceSheet = $transaction->balanceSheet;
 
-        if (!$balanceSheet) {
+        if (! $balanceSheet) {
             return;
         }
 

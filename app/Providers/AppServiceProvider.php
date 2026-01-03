@@ -4,11 +4,10 @@ namespace App\Providers;
 
 use App\Models\Transaction;
 use App\Observers\TransactionObserver;
-use Illuminate\Support\ServiceProvider;
 use App\Settings\GeneralSettings;
 use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Support\Facades\View;
-use Transliterator;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
 
         FilamentIcon::register([
             'panels::sidebar.collapse-button' => 'heroicon-o-x-mark',
-            'panels::sidebar.expand-button'   => 'heroicon-o-bars-3',
+            'panels::sidebar.expand-button' => 'heroicon-o-bars-3',
         ]);
     }
 }

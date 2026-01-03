@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class MarriageAssistanceApplication extends Model
 {
     use SoftDeletes;
+
     protected $fillable = [
 
         // Guardian/Applicant details
@@ -24,11 +25,11 @@ class MarriageAssistanceApplication extends Model
         'bride_education',
         'bride_cnic',
         'bride_occupation',
-        'bride_dob', //Date of birth
+        'bride_dob', // Date of birth
         'bride_marriage_status',
         'bride_needs',
 
-        'application_date'
+        'application_date',
     ];
 
     protected $casts = [

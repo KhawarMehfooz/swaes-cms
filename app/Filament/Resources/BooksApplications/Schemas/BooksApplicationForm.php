@@ -29,7 +29,7 @@ class BooksApplicationForm
                             ->options(
                                 collect(range(2025, now()->year + 2))
                                     ->reverse()
-                                    ->mapWithKeys(fn($year) => [$year => $year])
+                                    ->mapWithKeys(fn ($year) => [$year => $year])
                             )
                             ->searchable()
                             ->required()
@@ -95,9 +95,7 @@ class BooksApplicationForm
                             ->required()
                             ->label('Books/Stationary/School Bags')
                             ->placeholder('Enter the details of items')
-                            ->columnSpanFull()
-
-
+                            ->columnSpanFull(),
 
                     ])
                     ->columns(3)

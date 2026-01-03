@@ -14,10 +14,10 @@ class ExpensesApplication extends Model
         'shop_address',
         'details',
 
-        'application_date'
+        'application_date',
     ];
 
     protected $casts = [
-        'application_date' => 'date:Y-m-d'
+        'application_date' => 'date:Y-m-d',
     ];
 }

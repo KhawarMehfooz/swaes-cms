@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class FeeApplication extends Model
 {
     use SoftDeletes;
+
     protected $fillable = [
         // Applicant details
         'name',
@@ -34,12 +35,12 @@ class FeeApplication extends Model
         'guardian_address',
         'guardian_amount',
 
-        'dated'
+        'dated',
     ];
 
     protected $casts = [
         'total_fee' => 'decimal:2',
         'guardian_amount' => 'decimal:2',
-        'dated' => 'date:Y-m-d'
+        'dated' => 'date:Y-m-d',
     ];
 }

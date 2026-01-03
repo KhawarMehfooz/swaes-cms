@@ -4,7 +4,6 @@ namespace App\Filament\Resources\GoodsAssistanceApplications\Schemas;
 
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\RichEditor;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
@@ -48,7 +47,6 @@ class GoodsAssistanceApplicationForm
                     ->columnSpanFull()
                     ->collapsible(),
 
-
                 // Payment Details
                 Section::make('Payment Details')
                     ->schema([
@@ -67,7 +65,7 @@ class GoodsAssistanceApplicationForm
                             ->required()
                             ->label('Cheque and Bill Number')
                             ->placeholder('Enter bill number')
-                            ->prefixIcon('heroicon-o-document-text')
+                            ->prefixIcon('heroicon-o-document-text'),
                     ])
                     ->columnSpanFull()
                     ->collapsible(),

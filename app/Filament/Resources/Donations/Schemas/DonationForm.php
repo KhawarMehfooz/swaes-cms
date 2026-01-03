@@ -3,15 +3,13 @@
 namespace App\Filament\Resources\Donations\Schemas;
 
 use App\Models\Donor;
+use App\Settings\GeneralSettings;
 use Carbon\Carbon;
-use Filament\Actions\Action;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Notifications\Notification;
 use Filament\Schemas\Schema;
-use App\Settings\GeneralSettings;
 
 class DonationForm
 {
@@ -34,7 +32,7 @@ class DonationForm
                 Select::make('donor_id')
                     ->label('Donor')
                     ->required()
-                    ->options(fn() => Donor::pluck('donor_name', 'id'))
+                    ->options(fn () => Donor::pluck('donor_name', 'id'))
                     ->searchable()
                     ->preload()
                     ->prefixIcon('heroicon-o-user-group')
@@ -70,7 +68,6 @@ class DonationForm
                             'donor_contact_number' => $data['donor_contact_number'],
                         ])->id;
                     }),
-
 
                 TextInput::make('purpose')
                     ->required()

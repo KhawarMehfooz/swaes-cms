@@ -2,15 +2,14 @@
 
 namespace App\Filament\Resources\FeeApplications\Schemas;
 
+use App\Settings\GeneralSettings;
 use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Support\RawJs;
-use App\Settings\GeneralSettings;
 
 class FeeApplicationForm
 {
@@ -23,7 +22,7 @@ class FeeApplicationForm
                         DatePicker::make('dated')
                             ->label('Application Date')
                             ->required()
-                            ->displayFormat('d/m/Y') 
+                            ->displayFormat('d/m/Y')
                             ->format('Y-m-d')
                             ->default(now())
                             ->prefixIcon('heroicon-o-calendar'),
@@ -122,7 +121,6 @@ class FeeApplicationForm
                     ->columns(3)
                     ->columnSpanFull()
                     ->collapsible(),
-
 
                 // Guardian Details
                 Section::make('Guardian Details')

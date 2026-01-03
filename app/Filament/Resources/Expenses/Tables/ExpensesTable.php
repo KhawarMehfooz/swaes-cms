@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Expenses\Tables;
 use App\Models\AccountOfExpense;
 use App\Models\BalanceSheet;
 use App\Models\Transaction;
+use App\Settings\GeneralSettings;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\CreateAction;
 use Filament\Actions\DeleteBulkAction;
@@ -15,7 +16,6 @@ use Filament\Notifications\Notification;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
-use App\Settings\GeneralSettings;
 
 class ExpensesTable
 {
@@ -29,8 +29,7 @@ class ExpensesTable
                     ->sortable(),
                 TextColumn::make('amount')
                     ->formatStateUsing(
-                        fn($state) =>
-                        app(GeneralSettings::class)->currency_symbol . ' ' . number_format($state, 2)
+                        fn ($state) => app(GeneralSettings::class)->currency_symbol.' '.number_format($state, 2)
                     )
                     ->sortable(),
                 TextColumn::make('dated')->date(),
@@ -41,7 +40,7 @@ class ExpensesTable
                     ->label('Create Expense')
                     ->modalWidth('lg')
                     ->modalHeading('New Expense')
-                    ->visible(fn(): bool => ($bs = BalanceSheet::latest()->first()) && $bs->status !== 'finalized')
+                    ->visible(fn (): bool => ($bs = BalanceSheet::latest()->first()) && $bs->status !== 'finalized')
                     ->using(function (array $data): Transaction {
                         $currentBalanceSheet = BalanceSheet::latest()->first();
 
@@ -61,7 +60,7 @@ class ExpensesTable
 
                         Notification::make()
                             ->title('Expense recorded successfully')
-                            ->body('Added under balance sheet ' . $currentBalanceSheet->month)
+                            ->body('Added under balance sheet '.$currentBalanceSheet->month)
                             ->success()
                             ->send();
 
@@ -74,7 +73,7 @@ class ExpensesTable
                     ->label('Create Expense')
                     ->color('gray')
                     ->icon('heroicon-o-exclamation-triangle')
-                    ->visible(fn(): bool => !(($bs = BalanceSheet::latest()->first()) && $bs->status !== 'finalized'))
+                    ->visible(fn (): bool => ! (($bs = BalanceSheet::latest()->first()) && $bs->status !== 'finalized'))
                     ->action(function () {
                         Notification::make()
                             ->title('No active balance sheet')

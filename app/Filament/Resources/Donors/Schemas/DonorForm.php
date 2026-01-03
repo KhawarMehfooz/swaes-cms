@@ -28,8 +28,8 @@ class DonorForm
                             ->mask('99999-9999999-9')
                             ->placeholder('12345-6789123-4')
                             ->unique(
-                                ignoreRecord: true, 
-                                table: 'donors', 
+                                ignoreRecord: true,
+                                table: 'donors',
                                 column: 'donor_cnic'
                             )
                             ->prefixIcon('heroicon-o-identification'),
@@ -41,14 +41,14 @@ class DonorForm
                             ->placeholder('0300-1234567')
                             ->prefixIcon('heroicon-o-phone')
                             ->unique(
-                                ignoreRecord: true, 
-                                table: 'donors', 
+                                ignoreRecord: true,
+                                table: 'donors',
                                 column: 'donor_contact_number'
                             ),
 
                     ])
                     ->columnSpanFull()
-                    ->columns(3)
+                    ->columns(3),
             ]);
     }
 }

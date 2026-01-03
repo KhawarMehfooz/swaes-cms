@@ -7,15 +7,15 @@ use App\Filament\Resources\Expenses\Pages\EditExpense;
 use App\Filament\Resources\Expenses\Pages\ListExpenses;
 use App\Filament\Resources\Expenses\Schemas\ExpenseForm;
 use App\Filament\Resources\Expenses\Tables\ExpensesTable;
-use App\Models\Expense;
 use App\Models\Transaction;
-use BackedEnum, UnitEnum;
+use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use UnitEnum;
 
 class ExpenseResource extends Resource
 {
@@ -26,6 +26,7 @@ class ExpenseResource extends Resource
     protected static string|UnitEnum|null $navigationGroup = 'Accounting';
 
     protected static ?string $navigationLabel = 'Expenses';
+
     protected static ?string $pluralLabel = 'Expenses';
 
     public static function form(Schema $schema): Schema

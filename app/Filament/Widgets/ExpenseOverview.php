@@ -4,9 +4,9 @@ namespace App\Filament\Widgets;
 
 use App\Models\BalanceSheet;
 use App\Models\Transaction;
+use App\Settings\GeneralSettings;
 use Filament\Widgets\StatsOverviewWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
-use App\Settings\GeneralSettings;
 
 class ExpenseOverview extends StatsOverviewWidget
 {
@@ -21,8 +21,8 @@ class ExpenseOverview extends StatsOverviewWidget
         $total = $query->sum('amount');
 
         return [
-            Stat::make('Expenses', app(GeneralSettings::class)->currency_symbol . ' ' . number_format($total, 2))
-                ->description("Expenses for " . now()->format('F Y'))
+            Stat::make('Expenses', app(GeneralSettings::class)->currency_symbol.' '.number_format($total, 2))
+                ->description('Expenses for '.now()->format('F Y'))
                 ->color('danger'),
         ];
     }
@@ -34,6 +34,6 @@ class ExpenseOverview extends StatsOverviewWidget
 
     public function getColumnSpan(): int|string|array
     {
-        return 1; 
+        return 1;
     }
 }

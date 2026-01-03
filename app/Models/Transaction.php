@@ -20,15 +20,18 @@ class Transaction extends Model
         'dated',
     ];
 
-    public function balanceSheet(){
+    public function balanceSheet()
+    {
         return $this->belongsTo(BalanceSheet::class);
     }
 
-    public function donor(){
+    public function donor()
+    {
         return $this->belongsTo(Donor::class);
     }
 
-    public function accountOfExpense(){
+    public function accountOfExpense()
+    {
         return $this->belongsTo(AccountOfExpense::class);
     }
 }

@@ -2,13 +2,13 @@
 
 namespace App\Filament\Resources\Expenses\Schemas;
 
+use App\Settings\GeneralSettings;
 use Carbon\Carbon;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
-use App\Settings\GeneralSettings;
-use Filament\Forms\Components\Select;
 
 class ExpenseForm
 {
@@ -26,11 +26,11 @@ class ExpenseForm
                         TextInput::make('name')
                             ->label('Account Name')
                             ->required()
-                            ->maxLength(45)
+                            ->maxLength(45),
                     ])
                     ->prefixIcon('heroicon-o-information-circle')
                     ->columnSpanFull(),
-                TextInput::make('amount')->numeric()->required()->prefix(app(GeneralSettings::class)->currency_symbol . ' '),
+                TextInput::make('amount')->numeric()->required()->prefix(app(GeneralSettings::class)->currency_symbol.' '),
                 DatePicker::make('dated')
                     ->label('Date')
                     ->prefixIcon('heroicon-o-calendar')

@@ -19,7 +19,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use UnitEnum;
 
-
 class MarriageAssistanceApplicationResource extends Resource
 {
     protected static ?string $model = MarriageAssistanceApplication::class;

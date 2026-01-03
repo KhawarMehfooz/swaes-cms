@@ -21,10 +21,11 @@ class UniformApplication extends Model
         'uniform_details',
 
         'application_date',
-        'scheme_year'
+        'scheme_year',
     ];
+
     protected $casts = [
         'application_date' => 'date:Y-m-d',
-         'uniform_details' => 'array',
+        'uniform_details' => 'array',
     ];
 }

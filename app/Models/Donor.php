@@ -8,13 +8,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Donor extends Model
 {
     use SoftDeletes;
+
     protected $fillable = [
         'donor_name',
         'donor_cnic',
-        'donor_contact_number'
+        'donor_contact_number',
     ];
 
-    public function donations(){
+    public function donations()
+    {
         return $this->hasMany(Transaction::class);
     }
 }

@@ -27,7 +27,7 @@ class BooksApplicationsTable
                 TextColumn::make('guardian_cnic')
                     ->searchable(),
                 TextColumn::make('scheme_year')
-                    ->searchable()
+                    ->searchable(),
             ])
             ->filters([
                 // TrashedFilter::make(),
@@ -39,15 +39,16 @@ class BooksApplicationsTable
                     ->modal(false)
                     ->using(function ($record) {
                         $newRecord = $record->replicate();
-                        $newRecord->student_name = $record->student_name . ' (Copy)';
+                        $newRecord->student_name = $record->student_name.' (Copy)';
                         $newRecord->save();
+
                         return $newRecord;
                     })
                     ->successNotification(
                         Notification::make()
                             ->success()
                             ->title('Books Application Replicated')
-                    )
+                    ),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

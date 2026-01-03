@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Donations\Tables;
 
 use App\Models\BalanceSheet;
 use App\Models\Transaction;
+use App\Settings\GeneralSettings;
 use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\CreateAction;
@@ -15,7 +16,6 @@ use Filament\Notifications\Notification;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
-use App\Settings\GeneralSettings;
 
 class DonationsTable
 {
@@ -32,8 +32,7 @@ class DonationsTable
                     ->searchable(),
                 TextColumn::make('amount')
                     ->formatStateUsing(
-                        fn($state) =>
-                        app(GeneralSettings::class)->currency_symbol . ' ' . number_format($state, 2)
+                        fn ($state) => app(GeneralSettings::class)->currency_symbol.' '.number_format($state, 2)
                     ),
                 TextColumn::make('dated')->date()->label('Date'),
             ])->defaultSort('dated', 'desc')
@@ -43,7 +42,7 @@ class DonationsTable
                     ->icon('heroicon-o-plus')
                     ->modalHeading('New Donation')
                     ->modalWidth('2xl')
-                    ->visible(fn(): bool => ($bs = BalanceSheet::latest()->first()) && $bs->status !== 'finalized')
+                    ->visible(fn (): bool => ($bs = BalanceSheet::latest()->first()) && $bs->status !== 'finalized')
                     ->using(function (array $data): Transaction {
                         $currentBalanceSheet = BalanceSheet::latest()->first();
 
@@ -60,7 +59,7 @@ class DonationsTable
                     ->label('New Donation')
                     ->color('gray')
                     ->icon('heroicon-o-exclamation-triangle')
-                    ->visible(fn(): bool => !(($bs = BalanceSheet::latest()->first()) && $bs->status !== 'finalized'))
+                    ->visible(fn (): bool => ! (($bs = BalanceSheet::latest()->first()) && $bs->status !== 'finalized'))
                     ->action(function () {
                         Notification::make()
                             ->title('No active balance sheet')

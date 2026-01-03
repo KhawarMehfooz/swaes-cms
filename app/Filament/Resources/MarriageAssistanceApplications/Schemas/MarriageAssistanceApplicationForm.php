@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\MarriageAssistanceApplications\Schemas;
 
 use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
@@ -76,12 +75,10 @@ class MarriageAssistanceApplicationForm
                             ->placeholder('Enter family members')
                             ->prefixIcon('heroicon-o-briefcase'),
 
-
                     ])
                     ->columns(3)
                     ->columnSpanFull()
                     ->collapsible(),
-
 
                 // Bride Details
                 Section::make('Bride Details')

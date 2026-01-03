@@ -40,15 +40,16 @@ class GoodsAssistanceApplicationsTable
                     ->modal(false)
                     ->using(function ($record) {
                         $newRecord = $record->replicate();
-                        $newRecord->receiver_name = $record->receiver_name . ' (Copy)';
+                        $newRecord->receiver_name = $record->receiver_name.' (Copy)';
                         $newRecord->save();
+
                         return $newRecord;
                     })
                     ->successNotification(
                         Notification::make()
                             ->success()
                             ->title('Goods Assistance Application Replicated')
-                    )
+                    ),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

@@ -18,5 +18,4 @@ class ViewFeeApplication extends ViewRecord
             EditAction::make(),
         ];
     }
-
 }

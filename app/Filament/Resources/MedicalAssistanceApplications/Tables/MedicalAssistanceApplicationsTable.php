@@ -42,15 +42,16 @@ class MedicalAssistanceApplicationsTable
                     ->modal(false)
                     ->using(function ($record) {
                         $newRecord = $record->replicate();
-                        $newRecord->applicant_name = $record->applicant_name . ' (Copy)';
+                        $newRecord->applicant_name = $record->applicant_name.' (Copy)';
                         $newRecord->save();
+
                         return $newRecord;
                     })
                     ->successNotification(
                         Notification::make()
                             ->success()
                             ->title('Fee Application Replicated')
-                    )
+                    ),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('receiver_cnic', 15);
             $table->string('receiver_mobile_number', 20);
 
-             // Application details
+            // Application details
             $table->date('application_date');
 
             $table->timestamps();

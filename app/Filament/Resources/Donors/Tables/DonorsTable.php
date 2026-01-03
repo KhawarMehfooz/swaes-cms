@@ -28,7 +28,7 @@ class DonorsTable
                     ->searchable(),
                 TextColumn::make('donor_contact_number')
                     ->label('Contact Number')
-                    ->default('N/A')
+                    ->default('N/A'),
             ])
             ->filters([
                 // TrashedFilter::make(),

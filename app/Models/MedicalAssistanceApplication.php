@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class MedicalAssistanceApplication extends Model
 {
     use SoftDeletes;
+
     protected $fillable = [
         // Guardian/Applicant details
         'applicant_name',
@@ -27,10 +28,10 @@ class MedicalAssistanceApplication extends Model
         'doctor_name',
         'patient_needs',
 
-        'application_date'
+        'application_date',
     ];
 
     protected $casts = [
-        'application_date' => 'date:Y-m-d'
+        'application_date' => 'date:Y-m-d',
     ];
 }

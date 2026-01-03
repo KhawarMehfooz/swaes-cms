@@ -35,6 +35,4 @@ class ListBalanceSheets extends ListRecords
             CreateAction::make(),
         ];
     }
-
-
 }

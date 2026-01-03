@@ -3,14 +3,13 @@
 namespace App\Livewire;
 
 use App\Models\Donor;
+use App\Settings\GeneralSettings;
 use Filament\Widgets\StatsOverviewWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
-USE App\Settings\GeneralSettings;
 
 class DonorStatsWidget extends StatsOverviewWidget
 {
-
-    public ?Donor $record = null; 
+    public ?Donor $record = null;
 
     protected function getStats(): array
     {
@@ -18,7 +17,7 @@ class DonorStatsWidget extends StatsOverviewWidget
         $count = $this->record?->donations()->count() ?? 0;
 
         return [
-            Stat::make('Total Donations', app(GeneralSettings::class)->currency_symbol . ' ' . number_format($total))
+            Stat::make('Total Donations', app(GeneralSettings::class)->currency_symbol.' '.number_format($total))
                 ->description("Across {$count} donations")
                 ->color('success')
                 ->icon('heroicon-o-gift'),

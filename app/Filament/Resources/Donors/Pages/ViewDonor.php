@@ -3,17 +3,13 @@
 namespace App\Filament\Resources\Donors\Pages;
 
 use App\Filament\Resources\Donors\DonorResource;
-use App\Livewire\DonorStatsWidget;
 use Filament\Actions\EditAction;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Components\ViewEntry;
 use Filament\Resources\Pages\ViewRecord;
-use Filament\Infolists;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
-use Filament\Widgets\StatsOverviewWidget;
-use Filament\Widgets\StatsOverviewWidget\Stat;
 
 class ViewDonor extends ViewRecord
 {
@@ -33,8 +29,8 @@ class ViewDonor extends ViewRecord
             ->components([
                 Section::make('Donor Details')
                     ->schema([
-                        Grid::make() 
-                            ->columns(2) 
+                        Grid::make()
+                            ->columns(2)
                             ->schema([
                                 TextEntry::make('donor_name')
                                     ->label("Donor's Name")->size('md')->weight('bold'),

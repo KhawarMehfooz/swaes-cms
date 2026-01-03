@@ -10,6 +10,7 @@ use Illuminate\View\Component;
 class FormFooter extends Component
 {
     public $generalSettings;
+
     /**
      * Create a new component instance.
      */

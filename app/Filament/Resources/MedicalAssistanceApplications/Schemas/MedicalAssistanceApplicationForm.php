@@ -8,8 +8,6 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
-use App\Settings\GeneralSettings;
-
 
 class MedicalAssistanceApplicationForm
 {
@@ -87,7 +85,6 @@ class MedicalAssistanceApplicationForm
                     ->columns(3)
                     ->columnSpanFull()
                     ->collapsible(),
-
 
                 // Patient Details
                 Section::make('Patient Details')

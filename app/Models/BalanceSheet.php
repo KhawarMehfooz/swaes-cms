@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class BalanceSheet extends Model
 {
     use SoftDeletes;
+
     protected $fillable = [
         'month',
         'opening_balance',
@@ -38,8 +39,8 @@ class BalanceSheet extends Model
         return self::exists();
     }
 
-    public function transactions(){
+    public function transactions()
+    {
         return $this->hasMany(Transaction::class);
     }
-
 }
