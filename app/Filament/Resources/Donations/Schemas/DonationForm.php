@@ -34,7 +34,7 @@ class DonationForm
                 Select::make('donor_id')
                     ->label('Donor')
                     ->required()
-                    ->options(fn () => Donor::orderBy('donor_name')->pluck('donor_name', 'id'))
+                    ->options(fn() => Donor::pluck('donor_name', 'id'))
                     ->searchable()
                     ->preload()
                     ->prefixIcon('heroicon-o-user-group')
