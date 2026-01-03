@@ -6,7 +6,7 @@ use App\Models\BalanceSheet;
 use App\Models\Transaction;
 use Filament\Widgets\StatsOverviewWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
-USE App\Settings\GeneralSettings;
+use App\Settings\GeneralSettings;
 
 class ExpenseOverview extends StatsOverviewWidget
 {
@@ -25,5 +25,15 @@ class ExpenseOverview extends StatsOverviewWidget
                 ->description("Expenses for " . now()->format('F Y'))
                 ->color('danger'),
         ];
+    }
+
+    protected function getColumns(): int
+    {
+        return 1;
+    }
+
+    public function getColumnSpan(): int|string|array
+    {
+        return 1; 
     }
 }

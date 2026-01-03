@@ -27,4 +27,14 @@ class DonationsOverview extends StatsOverviewWidget
                 ->icon('heroicon-o-gift'),
         ];
     }
+
+    protected function getColumns(): int
+    {
+        return 1;
+    }
+
+        public function getColumnSpan(): int | string | array
+    {
+        return 1; 
+    }
 }
