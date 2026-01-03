@@ -28,7 +28,6 @@
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 10px;
-            table-layout: fixed;
         }
 
         td {
@@ -40,11 +39,13 @@
             vertical-align: top
         }
 
-        td:nth-child(1),
-        td:nth-child(3) {
-            width: 25%;
-            font-weight: bold;
+        td,
+        th {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: normal;
         }
+
 
         .section-title {
             text-align: center;
@@ -126,6 +127,14 @@
 
         <!-- Transactions Table -->
         <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
+            <colgroup>
+                <col style="width: 15%;"> <!-- Date -->
+                <col style="width: 40%;"> <!-- Particulars -->
+                <col style="width: 15%;"> <!-- Debit -->
+                <col style="width: 15%;"> <!-- Credit -->
+                <col style="width: 15%;"> <!-- Balance -->
+            </colgroup>
+
             <thead>
                 <tr style="background-color: #f3f3f3; text-align: left;">
                     <th style="padding: 8px; border: 1px solid #ddd;">Date</th>
